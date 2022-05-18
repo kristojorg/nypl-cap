@@ -14,7 +14,6 @@ import { Redirect, Route } from 'react-router-dom'
 
 import Browse from '../screens/Browse'
 import MyBooks from '../screens/MyBooks'
-import Search from '../screens/Search'
 import Settings from '../screens/Settings'
 import BookDetailPage from '../screens/BookDetail'
 
@@ -51,9 +50,7 @@ const TabLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
             <Route exact path="/settings">
               <Settings />
             </Route>
-            <Route exact path="/search">
-              <Search />
-            </Route>
+
             <Route exact path="/">
               <Redirect to="/browse" />
             </Route>
@@ -70,10 +67,6 @@ const TabLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
             <IonTabButton tab="settings" href="/settings">
               <IonIcon icon={settings} />
               <IonLabel>Settings</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="search" href="/search">
-              <IonIcon icon={search} />
-              <IonLabel>Search</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
