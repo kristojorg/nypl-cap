@@ -8,6 +8,7 @@ import {
   IonRefresher,
   IonRefresherContent,
   IonRouterOutlet,
+  IonSearchbar,
   IonSkeletonText,
   IonTitle,
   IonToolbar,
@@ -55,12 +56,20 @@ const Browse: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonTitle>Browse</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">Browse</IonTitle>
+          </IonToolbar>
+          <IonToolbar>
+            <IonSearchbar></IonSearchbar>
+          </IonToolbar>
+        </IonHeader>
         <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
