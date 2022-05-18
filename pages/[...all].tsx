@@ -6,8 +6,8 @@ const App = dynamic(() => import('../components/App'), {
   ssr: false,
 })
 
-const Home: NextPage = () => {
+const All: NextPage = () => {
   return <App />
 }
 
-export default Home
+export default All
