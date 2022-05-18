@@ -16,6 +16,7 @@ import Browse from '../screens/Browse'
 import MyBooks from '../screens/MyBooks'
 import Search from '../screens/Search'
 import Settings from '../screens/Settings'
+import BookDetailPage from '../screens/BookDetail'
 
 /**
  * Update the status bar color scheme
@@ -39,13 +40,18 @@ const TabLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
             <Route exact path="/browse">
               <Browse />
             </Route>
+            <Route
+              exact
+              path="/browse/book/:bookUrl"
+              component={BookDetailPage}
+            ></Route>
             <Route exact path="/my-books">
               <MyBooks />
             </Route>
-            <Route path="/settings">
+            <Route exact path="/settings">
               <Settings />
             </Route>
-            <Route path="/search">
+            <Route exact path="/search">
               <Search />
             </Route>
             <Route exact path="/">
