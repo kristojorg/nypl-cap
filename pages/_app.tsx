@@ -19,11 +19,20 @@ import '@ionic/react/css/display.css'
 /* Theme variables */
 import '../theme/variables.css'
 
-import { IonApp } from '@ionic/react'
+setupIonicReact()
+
+import { IonApp, setupIonicReact } from '@ionic/react'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <IonApp>
+      <Head>
+        <meta
+          name="viewport"
+          content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+      </Head>
       <Component {...pageProps} />
     </IonApp>
   )

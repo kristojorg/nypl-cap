@@ -69,17 +69,21 @@ function isTrackOpenBookLink(link: OPDSLink) {
   return link.rel === TrackOpenBookRel
 }
 function isSupportedOpenEBookLink(link: OPDSLink): link is OPDSAcquisitionLink {
-  if (isAcquisitionLink(link)) {
-    if (
-      link.type === AxisNowWebpubMediaType ||
-      link.indirectAcquisitions?.[0]?.type === AxisNowWebpubMediaType
-    ) {
-      return true
-    }
-    console.error('Invalid book!')
-    return false
-  }
-  return false
+  /**
+   * We should make this filter to only Adobe books for now
+   */
+  return true
+  // if (isAcquisitionLink(link)) {
+  //   if (
+  //     link.type === AxisNowWebpubMediaType ||
+  //     link.indirectAcquisitions?.[0]?.type === AxisNowWebpubMediaType
+  //   ) {
+  //     return true
+  //   }
+  //   console.error('Invalid book!')
+  //   return false
+  // }
+  // return false
 }
 
 /**

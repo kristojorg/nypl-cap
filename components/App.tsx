@@ -6,9 +6,7 @@ import {
   IonIcon,
   IonLabel,
   IonApp,
-  setupIonicReact,
 } from '@ionic/react'
-import { StatusBar, Style } from '@capacitor/status-bar'
 import React from 'react'
 import { book, list, search, settings } from 'ionicons/icons'
 import { IonReactRouter } from '@ionic/react-router'
@@ -19,7 +17,6 @@ import MyBooks from '../screens/MyBooks'
 import Search from '../screens/Search'
 import Settings from '../screens/Settings'
 
-setupIonicReact()
 /**
  * Update the status bar color scheme
  */
