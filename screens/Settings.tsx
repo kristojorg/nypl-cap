@@ -10,12 +10,18 @@ import {
   IonToolbar,
 } from '@ionic/react'
 import { ME_ENDPOINT } from 'lib/constants'
+import { useUser } from 'lib/storage'
 import * as React from 'react'
+
+/**
+ * 23333999999931/3787
+ */
 
 const Settings: React.FC = () => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [isLoading, setLoading] = React.useState(false)
+  const [user, setUser] = useUser()
 
   async function signIn() {
     if (!username || !password) {
@@ -23,21 +29,52 @@ const Settings: React.FC = () => {
       return
     }
     setLoading(true)
-    const token = `Basic ${Buffer.from(
-      `${username}:${password}`,
-      'base64'
-    ).toString('base64')}`
+    const token = btoa(`${username}:${password}`)
+    const header = `Basic ${token}`
     const resp = await fetch(ME_ENDPOINT, {
       headers: {
-        Authentication: token,
+        Authorization: header,
       },
     })
     if (resp.status === 200) {
       console.log('success', await resp.json())
+      setUser({ token: header })
     } else {
       console.error('fail', await resp.json())
     }
     setLoading(false)
+  }
+
+  function signOut() {
+    setUser(undefined)
+  }
+
+  if (user) {
+    return (
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Settings</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent fullscreen>
+          <IonHeader collapse="condense">
+            <IonToolbar>
+              <IonTitle size="large">Settings</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+          <p>You are logged in</p>
+          <IonButton
+            expand="block"
+            style={{ margin: 16 }}
+            onClick={signOut}
+            disabled={isLoading}
+          >
+            Log out
+          </IonButton>
+        </IonContent>
+      </IonPage>
+    )
   }
 
   return (
