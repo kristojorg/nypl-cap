@@ -11,7 +11,7 @@ import {
   RefresherEventDetail,
 } from '@ionic/react'
 import ExploreContainer from '../components/ExploreContainer'
-import { fetchBook } from '../fetching/fetch'
+import { fetchBook } from '../lib/fetching/fetch'
 import { RouteComponentProps } from 'react-router'
 import useSWR from 'swr'
 

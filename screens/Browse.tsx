@@ -16,7 +16,7 @@ import {
 } from '@ionic/react'
 import { ROOT_LANE_URL } from '../constants'
 import useSWR, { Fetcher } from 'swr'
-import { fetchCollection } from '../fetching/fetch'
+import { fetchCollection } from '../lib/fetching/fetch'
 import ListLoader from '../components/ListLoader'
 import ListItem from '../components/ListItem'
 
