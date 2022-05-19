@@ -9,12 +9,36 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
+import { ME_ENDPOINT } from 'lib/constants'
 import * as React from 'react'
-import ExploreContainer from '../components/ExploreContainer'
 
-const Tab3: React.FC = () => {
+const Settings: React.FC = () => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [isLoading, setLoading] = React.useState(false)
+
+  async function signIn() {
+    if (!username || !password) {
+      console.error('Username or password is empty')
+      return
+    }
+    setLoading(true)
+    const token = `Basic ${Buffer.from(
+      `${username}:${password}`,
+      'base64'
+    ).toString('base64')}`
+    const resp = await fetch(ME_ENDPOINT, {
+      headers: {
+        Authentication: token,
+      },
+    })
+    if (resp.status === 200) {
+      console.log('success', await resp.json())
+    } else {
+      console.error('fail', await resp.json())
+    }
+    setLoading(false)
+  }
 
   return (
     <IonPage>
@@ -30,22 +54,28 @@ const Tab3: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonItem>
-          <IonLabel>Username</IonLabel>
+          <IonLabel>Barcode</IonLabel>
           <IonInput
             value={username}
-            placeholder="Enter Input"
+            placeholder="Enter Barcode"
             onIonChange={(e) => setUsername(e.detail.value!)}
           ></IonInput>
         </IonItem>
         <IonItem>
-          <IonLabel>Password</IonLabel>
+          <IonLabel>Pin</IonLabel>
           <IonInput
             value={password}
-            placeholder="Enter Input"
+            placeholder="Enter Pin"
+            type="password"
             onIonChange={(e) => setPassword(e.detail.value!)}
           ></IonInput>
         </IonItem>
-        <IonButton expand="block" style={{ margin: 16 }}>
+        <IonButton
+          expand="block"
+          style={{ margin: 16 }}
+          onClick={signIn}
+          disabled={isLoading}
+        >
           Login
         </IonButton>
       </IonContent>
@@ -53,4 +83,4 @@ const Tab3: React.FC = () => {
   )
 }
 
-export default Tab3
+export default Settings

@@ -5,11 +5,11 @@
  * Currently only used for support of a Library Registry, which is
  * an OPDS 2 Feed of OPDS 2 Catalogs from which we extract the catalog root url
  */
-import * as OPDS2 from './types/opds2'
+import * as OPDS2 from '../types/opds2'
 /**
  * OPDS 1.x DATA TYPES
  */
-import * as OPDS1 from './types/opds1'
+import * as OPDS1 from '../types/opds1'
 export { OPDS2 }
 export { OPDS1 }
 

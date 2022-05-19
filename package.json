@@ -13,6 +13,7 @@
     "ios": "npx cap run ios --target=00DC77CD-C640-42BC-B183-5CF4B32099D1"
   },
   "dependencies": {
+    "@capacitor/android": "^3.5.1",
     "@capacitor/core": "^3.5.1",
     "@capacitor/ios": "^3.5.1",
     "@capacitor/status-bar": "^1.0.8",

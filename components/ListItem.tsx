@@ -1,6 +1,6 @@
 import { IonLabel, IonItem, IonThumbnail, IonImg } from '@ionic/react'
 import React from 'react'
-import { OpenEBook } from '../interfaces'
+import { OpenEBook } from '../lib/interfaces'
 
 const ListItem: React.FC<{ book: OpenEBook }> = ({ book }) => {
   return (

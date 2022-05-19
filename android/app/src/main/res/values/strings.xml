@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">nypl-cap</string>
+    <string name="title_activity_main">nypl-cap</string>
+    <string name="package_name">com.kristojorgenson.nyplcap</string>
+    <string name="custom_url_scheme">com.kristojorgenson.nyplcap</string>
+</resources>

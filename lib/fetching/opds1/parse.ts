@@ -20,7 +20,7 @@ import {
   FacetGroupData,
   OPDS1,
   OpenEBook,
-} from '../../../interfaces'
+} from '../../interfaces'
 import {
   AxisNowWebpubMediaType,
   ReadOnlineMediaType,

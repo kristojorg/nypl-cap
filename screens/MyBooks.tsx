@@ -1,5 +1,10 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react'
 
 const Tab2: React.FC = () => {
   return (
@@ -15,10 +20,10 @@ const Tab2: React.FC = () => {
             <IonTitle size="large">My Books</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="My Books" />
+        My Books
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Tab2;
+export default Tab2
