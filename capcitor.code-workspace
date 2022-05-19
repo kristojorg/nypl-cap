@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "nypl-cap",
+      "path": "."
+    },
+    {
+      "name": "circulation-patron-web",
+      "path": "../circulation-patron-web"
+    },
+    {
+      "name": "nypl-ionic",
+      "path": "../nypl-ionic"
+    }
+  ],
+  "settings": {}
+}

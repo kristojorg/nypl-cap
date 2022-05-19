@@ -28,8 +28,6 @@ const Browse: React.FC = () => {
     event.detail.complete()
   }
 
-  console.log(data)
-
   if (!data)
     return (
       <IonPage>
