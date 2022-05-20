@@ -14,12 +14,12 @@ import {
   useIonLoading,
 } from '@ionic/react'
 import * as React from 'react'
-import { fetchBook } from '../lib/fetching/fetch'
+import { fetchBook } from '~/lib/fetching/fetch'
 import { RouteComponentProps } from 'react-router'
 import useSWR, { Fetcher, mutate } from 'swr'
-import { useUser } from 'lib/storage'
-import { OpenEBook } from 'lib/interfaces'
-import { LOANS_ENDPOINT, ROOT_LANE_URL } from 'lib/constants'
+import { useUser } from '~/lib/storage'
+import { OpenEBook } from '~/lib/interfaces'
+import { LOANS_ENDPOINT, ROOT_LANE_URL } from '~/lib/constants'
 
 interface BookDetailProps
   extends RouteComponentProps<{

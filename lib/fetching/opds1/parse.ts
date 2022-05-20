@@ -20,12 +20,12 @@ import {
   FacetGroupData,
   OPDS1,
   OpenEBook,
-} from '../../interfaces'
+} from '~/lib/interfaces'
 import {
   AxisNowWebpubMediaType,
   ReadOnlineMediaType,
   TrackOpenBookRel,
-} from '../../../types/opds1'
+} from '~/types/opds1'
 import createDomPurify from 'dompurify'
 
 let DOMPurify: any

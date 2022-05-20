@@ -14,13 +14,13 @@ import {
   IonToolbar,
   RefresherEventDetail,
 } from '@ionic/react'
-import { LOANS_ENDPOINT, ROOT_LANE_URL } from 'lib/constants'
+import { LOANS_ENDPOINT, ROOT_LANE_URL } from '~/lib/constants'
 import useSWR, { Fetcher } from 'swr'
-import { fetchCollection } from 'lib/fetching/fetch'
-import ListLoader from 'components/ListLoader'
-import ListItem from 'components/ListItem'
-import { useUser } from 'lib/storage'
-import { OpenEBook } from 'lib/interfaces'
+import { fetchCollection } from '~/lib/fetching/fetch'
+import ListLoader from '~/components/ListLoader'
+import ListItem from '~/components/ListItem'
+import { useUser } from '~/lib/storage'
+import { OpenEBook } from '~/lib/interfaces'
 
 // we only need the books out of a collection for loans,
 // so this is a utility to extract those.

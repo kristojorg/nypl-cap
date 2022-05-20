@@ -9,8 +9,8 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
-import { ME_ENDPOINT } from 'lib/constants'
-import { useUser } from 'lib/storage'
+import { ME_ENDPOINT } from '~/lib/constants'
+import { useUser } from '~/lib/storage'
 import * as React from 'react'
 
 /**

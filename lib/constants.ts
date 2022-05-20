@@ -2,7 +2,7 @@ export const AUTH_DOC_URL =
   'https://qa-circulation.librarysimplified.org/QANYPL/authentication_document'
 export const LIBRARY_SLUG = 'QANYPL'
 export const ROOT_LANE_URL = new URL(
-  `/${LIBRARY_SLUG}?sort=ascending`,
+  `/${LIBRARY_SLUG}/groups`,
   AUTH_DOC_URL
 ).toString()
 
