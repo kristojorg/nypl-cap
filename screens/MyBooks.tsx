@@ -44,6 +44,7 @@ const Browse: React.FC = () => {
 
   async function doRefresh(event: CustomEvent<RefresherEventDetail>) {
     await mutate()
+    console.log('Refreshed')
     event.detail.complete()
   }
 
@@ -91,8 +92,6 @@ const Browse: React.FC = () => {
       </IonPage>
     )
 
-  console.log(books)
-
   return (
     <IonPage>
       <IonHeader translucent>
@@ -104,9 +103,6 @@ const Browse: React.FC = () => {
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">My Books</IonTitle>
-          </IonToolbar>
-          <IonToolbar>
-            <IonSearchbar></IonSearchbar>
           </IonToolbar>
         </IonHeader>
         <IonRefresher slot="fixed" onIonRefresh={doRefresh}>

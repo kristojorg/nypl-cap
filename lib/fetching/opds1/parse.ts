@@ -72,7 +72,7 @@ function isSupportedOpenEBookLink(link: OPDSLink): link is OPDSAcquisitionLink {
   /**
    * We should make this filter to only Adobe books for now
    */
-  return true
+  return isAcquisitionLink(link)
   // if (isAcquisitionLink(link)) {
   //   if (
   //     link.type === AxisNowWebpubMediaType ||
@@ -151,6 +151,7 @@ export function entryToBook(entry: OPDSEntry, feedUrl: string): OpenEBook {
   const acquisitionLink = entry.links.find(isSupportedOpenEBookLink)
 
   let availability, holds, copies, borrowLink, fulfillmentLink
+
   if (acquisitionLink) {
     ;({ availability, holds, copies } = acquisitionLink)
     // if the acquisition link is a borrow link, assign it as such,
@@ -211,12 +212,7 @@ export function entryToBook(entry: OPDSEntry, feedUrl: string): OpenEBook {
 }
 
 function isBorrowLink(link: OPDSAcquisitionLink) {
-  if (
-    link.rel === OPDSAcquisitionLink.BORROW_REL &&
-    link.indirectAcquisitions.some(
-      (format) => format.type === AxisNowWebpubMediaType
-    )
-  ) {
+  if (link.rel === OPDSAcquisitionLink.BORROW_REL) {
     return true
   }
   return false
