@@ -107,5 +107,5 @@ async function doesDownloadExist(id: string): Promise<boolean> {
 }
 
 function idToPath(id: string) {
-  return `${id}.epub.adobe`
+  return `${encodeURIComponent(id)}.epub.adobe`
 }

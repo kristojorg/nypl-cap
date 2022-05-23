@@ -24,6 +24,7 @@
     "@capacitor/storage": "^1.2.5",
     "@ionic/react": "^6.1.5",
     "@ionic/react-router": "^6.1.5",
+    "@ionic/storage": "^3.0.6",
     "dompurify": "^2.3.8",
     "jsdom": "^19.0.0",
     "next": "12.1.6",
