@@ -50,6 +50,8 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
   const [user] = useUser()
   const [present, dismiss] = useIonLoading()
 
+  console.log(user)
+
   const { data, mutate, isValidating } = useSWR(
     [bookUrl, user?.token],
     fetchBookWithToken
@@ -162,7 +164,12 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
             <p>Download to read book</p>
           )}
           {data.status === 'fulfillable' && isDownloaded && (
-            <p>Book is downloaded</p>
+            <div style={{ display: 'flex' }}>
+              <p>Book is downloaded</p>
+              <IonButton color="danger" fill="clear" onClick={removeDownload}>
+                Remove Download
+              </IonButton>
+            </div>
           )}
           <IonButton
             fill="solid"
