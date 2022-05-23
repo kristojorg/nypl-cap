@@ -1,4 +1,5 @@
 import { useStorageItem } from '@capacitor-community/storage-react'
+import { App } from '@capacitor/app'
 
 export const USER_STORAGE_KEY = 'user'
 

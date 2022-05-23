@@ -20,6 +20,7 @@ import useSWR, { Fetcher, mutate } from 'swr'
 import { useUser } from '~/lib/storage'
 import { OpenEBook } from '~/lib/interfaces'
 import { LOANS_ENDPOINT, ROOT_LANE_URL } from '~/lib/constants'
+import useDownload from '~lib/downloads'
 
 interface BookDetailProps
   extends RouteComponentProps<{
@@ -34,6 +35,7 @@ const fetchBookWithToken: Fetcher<
   if (token) {
     headers['Authorization'] = token
   }
+  console.log('HEADERS', headers)
   return await fetchBook(url, ROOT_LANE_URL, {
     headers,
   })
@@ -52,6 +54,7 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
     [bookUrl, user?.token],
     fetchBookWithToken
   )
+  const { isDownloaded, download, removeDownload } = useDownload(data)
 
   async function doRefresh(event: CustomEvent<RefresherEventDetail>) {
     await mutate()
@@ -87,13 +90,16 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
     const headers: RequestInit['headers'] = {
       Authorization: user.token,
     }
-    const response = await fetch(borrowUrl, { headers })
-    if (!response.ok) {
-      console.error('Error borrowing book', await response.text())
-      dismiss()
-      return
-    }
-    await mutate()
+    await mutate(
+      fetchBook(borrowUrl, ROOT_LANE_URL, {
+        headers,
+        method: 'PUT',
+      }),
+      {
+        revalidate: false,
+      }
+    )
+
     mutateLoans(user.token)
     dismiss()
   }
@@ -116,14 +122,14 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
     const headers: RequestInit['headers'] = {
       Authorization: user.token,
     }
-    const response = await fetch(revokeUrl, { headers })
-    if (!response.ok) {
-      console.error('Error returning book', await response.text())
-      dismiss()
-      return
-    }
-    await mutate()
-    mutateLoans(user.token)
+    await removeDownload()
+
+    const book = await fetchBook(revokeUrl, ROOT_LANE_URL, {
+      headers,
+      method: 'PUT',
+    })
+    await mutateLoans(user.token)
+    await mutate(book, { revalidate: false })
     dismiss()
   }
 
@@ -152,14 +158,28 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
             <strong>Authors: </strong>
             {data.authors?.join(', ')}
           </p>
+          {data.status === 'fulfillable' && !isDownloaded && (
+            <p>Download to read book</p>
+          )}
+          {data.status === 'fulfillable' && isDownloaded && (
+            <p>Book is downloaded</p>
+          )}
           <IonButton
-            color="primary"
-            strong
             fill="solid"
             onClick={data.status === 'borrowable' ? borrow : returnBook}
           >
             {data.status === 'borrowable' ? 'Borrow' : 'Return'}
           </IonButton>
+          {data.status === 'fulfillable' && !isDownloaded && (
+            <IonButton onClick={download} fill="solid" color="tertiary">
+              Download
+            </IonButton>
+          )}
+          {data.status === 'fulfillable' && isDownloaded && (
+            <IonButton fill="solid" color="tertiary">
+              Read Book
+            </IonButton>
+          )}
           {data.summary && (
             <>
               <h2>Summary</h2>

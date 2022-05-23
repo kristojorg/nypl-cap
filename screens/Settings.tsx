@@ -8,10 +8,12 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonLoading,
 } from '@ionic/react'
-import { ME_ENDPOINT } from '~/lib/constants'
+import { LOANS_ENDPOINT, ME_ENDPOINT } from '~/lib/constants'
 import { useUser } from '~/lib/storage'
 import * as React from 'react'
+import { mutate } from 'swr'
 
 /**
  * 23333999999931/3787
@@ -20,15 +22,15 @@ import * as React from 'react'
 const Settings: React.FC = () => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const [isLoading, setLoading] = React.useState(false)
   const [user, setUser] = useUser()
+  const [present, dismiss] = useIonLoading()
 
   async function signIn() {
     if (!username || !password) {
       console.error('Username or password is empty')
       return
     }
-    setLoading(true)
+    present({ message: 'Logging in...' })
     const token = btoa(`${username}:${password}`)
     const header = `Basic ${token}`
     const resp = await fetch(ME_ENDPOINT, {
@@ -42,11 +44,12 @@ const Settings: React.FC = () => {
     } else {
       console.error('fail', await resp.json())
     }
-    setLoading(false)
+    dismiss()
   }
 
-  function signOut() {
+  async function signOut() {
     setUser(undefined)
+    mutate(LOANS_ENDPOINT)
   }
 
   if (user) {
@@ -64,12 +67,7 @@ const Settings: React.FC = () => {
             </IonToolbar>
           </IonHeader>
           <p>You are logged in</p>
-          <IonButton
-            expand="block"
-            style={{ margin: 16 }}
-            onClick={signOut}
-            disabled={isLoading}
-          >
+          <IonButton expand="block" style={{ margin: 16 }} onClick={signOut}>
             Log out
           </IonButton>
         </IonContent>
@@ -107,12 +105,7 @@ const Settings: React.FC = () => {
             onIonChange={(e) => setPassword(e.detail.value!)}
           ></IonInput>
         </IonItem>
-        <IonButton
-          expand="block"
-          style={{ margin: 16 }}
-          onClick={signIn}
-          disabled={isLoading}
-        >
+        <IonButton expand="block" style={{ margin: 16 }} onClick={signIn}>
           Login
         </IonButton>
       </IonContent>

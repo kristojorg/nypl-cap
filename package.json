@@ -3,19 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx parcel index.html --port 3000 --host kmbp --dist-dir out",
+    "dev": "npx parcel index.html --port 3000 --dist-dir out",
     "build": "npx parcel build index.html --dist-dir out",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",
     "ionic:build": "npm run build",
     "ionic:serve": "npm run start",
-    "ios": "npx cap run ios --target=00DC77CD-C640-42BC-B183-5CF4B32099D1"
+    "ios": "npx cap run ios --target=00DC77CD-C640-42BC-B183-5CF4B32099D1 -l --external"
   },
   "dependencies": {
+    "@capacitor-community/app-react": "^0.1.0",
     "@capacitor-community/storage-react": "^0.1.0",
     "@capacitor/android": "^3.5.1",
+    "@capacitor/app": "^1.1.1",
     "@capacitor/core": "^3.5.1",
+    "@capacitor/filesystem": "^1.1.0",
     "@capacitor/ios": "^3.5.1",
     "@capacitor/status-bar": "^1.0.8",
     "@capacitor/storage": "^1.2.5",

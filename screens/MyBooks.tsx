@@ -1,38 +1,21 @@
 import {
   IonContent,
   IonHeader,
-  IonLabel,
   IonList,
-  IonListHeader,
   IonPage,
   IonRefresher,
   IonRefresherContent,
-  IonRouterOutlet,
-  IonSearchbar,
-  IonSkeletonText,
   IonTitle,
   IonToolbar,
   RefresherEventDetail,
 } from '@ionic/react'
-import { LOANS_ENDPOINT, ROOT_LANE_URL } from '~/lib/constants'
-import useSWR, { Fetcher } from 'swr'
-import { fetchCollection } from '~/lib/fetching/fetch'
+import { LOANS_ENDPOINT } from '~/lib/constants'
+import useSWR from 'swr'
+import { fetchLoans } from '~/lib/fetching/fetch'
 import ListLoader from '~/components/ListLoader'
 import ListItem from '~/components/ListItem'
 import { useUser } from '~/lib/storage'
-import { OpenEBook } from '~/lib/interfaces'
-
-// we only need the books out of a collection for loans,
-// so this is a utility to extract those.
-const fetchLoans: Fetcher<OpenEBook[], [url: string, token: string]> = async (
-  url,
-  token
-) => {
-  const collection = await fetchCollection(url, {
-    headers: { Authorization: token },
-  })
-  return collection.books
-}
+import useLoanDownloads from '~lib/downloads'
 
 const Browse: React.FC = () => {
   const [user] = useUser()
@@ -47,6 +30,38 @@ const Browse: React.FC = () => {
     console.log('Refreshed')
     event.detail.complete()
   }
+
+  if (!user?.token)
+    return (
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>My Books</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent fullscreen>
+          <IonHeader collapse="condense">
+            <IonToolbar>
+              <IonTitle size="large">My Books</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+          <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
+            <IonRefresherContent></IonRefresherContent>
+          </IonRefresher>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              height: '100%',
+            }}
+          >
+            <p>You are not signed in. Please go to settings and sign in.</p>
+          </div>
+        </IonContent>
+      </IonPage>
+    )
 
   if (!books && isValidating)
     return (
@@ -87,7 +102,17 @@ const Browse: React.FC = () => {
           <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
             <IonRefresherContent></IonRefresherContent>
           </IonRefresher>
-          <p>You have no books on loan.</p>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              height: '100%',
+            }}
+          >
+            <p>You have no books on loan.</p>
+          </div>
         </IonContent>
       </IonPage>
     )
