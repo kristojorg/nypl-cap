@@ -31,6 +31,8 @@ const Browse: React.FC = () => {
     event.detail.complete()
   }
 
+  console.log('HWAT')
+
   if (!user?.token)
     return (
       <IonPage>

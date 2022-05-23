@@ -8,6 +8,9 @@ import {
   IonPage,
   IonRefresher,
   IonRefresherContent,
+  IonSkeletonText,
+  IonSpinner,
+  IonThumbnail,
   IonTitle,
   IonToolbar,
   RefresherEventDetail,
@@ -35,7 +38,6 @@ const fetchBookWithToken: Fetcher<
   if (token) {
     headers['Authorization'] = token
   }
-  console.log('HEADERS', headers)
   return await fetchBook(url, ROOT_LANE_URL, {
     headers,
   })
@@ -49,8 +51,6 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
   const bookUrl = decodeURIComponent(match.params.bookUrl)
   const [user] = useUser()
   const [present, dismiss] = useIonLoading()
-
-  console.log(user)
 
   const { data, mutate, isValidating } = useSWR(
     [bookUrl, user?.token],
@@ -68,13 +68,25 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Book Detail</IonTitle>
             <IonButtons slot="start">
               <IonBackButton />
             </IonButtons>
           </IonToolbar>
         </IonHeader>
-        <IonContent fullscreen>Book Detail</IonContent>
+        <IonContent fullscreen>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+            }}
+          >
+            <IonSpinner />
+            <p>Loading...</p>
+          </div>
+        </IonContent>
       </IonPage>
     )
 

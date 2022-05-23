@@ -1,9 +1,9 @@
 {
-	"appId": "com.kristojorgenson.nyplcap",
-	"appName": "nypl-cap",
+	"appId": "org.nypl.hybrid-test",
+	"appName": "NYPL Hybrid",
 	"webDir": "out",
-	"bundledWebRuntime": false,
 	"server": {
+		"url": "http://kmbp:3000",
 		"cleartext": true
 	}
 }
