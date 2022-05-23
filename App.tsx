@@ -37,8 +37,6 @@ import '@ionic/react/css/display.css'
 import '~/lib/theme/variables.css'
 
 import { setupIonicReact } from '@ionic/react'
-import Head from 'next/head'
-import { SWRConfig } from 'swr'
 
 setupIonicReact()
 

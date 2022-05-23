@@ -4,7 +4,6 @@
 	"webDir": "out",
 	"bundledWebRuntime": false,
 	"server": {
-		"url": "http://kmbp:3000",
 		"cleartext": true
 	}
 }
