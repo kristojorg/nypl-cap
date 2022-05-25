@@ -63,6 +63,8 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
     event.detail.complete()
   }
 
+  console.log(data)
+
   if (!data)
     return (
       <IonPage>

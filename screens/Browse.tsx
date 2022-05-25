@@ -19,14 +19,22 @@ import useSWR from 'swr'
 import { fetchCollection } from '~/lib/fetching/fetch'
 import ListLoader from '~/components/ListLoader'
 import ListItem from '~/components/ListItem'
+import React from 'react'
+// import R2 from '~/lib/r2Plugin'
 
 const Browse: React.FC = () => {
-  const { data, mutate, isValidating } = useSWR(ROOT_LANE_URL, fetchCollection)
+  const { data, mutate } = useSWR(ROOT_LANE_URL, fetchCollection)
 
   async function doRefresh(event: CustomEvent<RefresherEventDetail>) {
     await mutate()
     event.detail.complete()
   }
+
+  // React.useEffect(() => {
+  //   R2.echo({ value: 'Hello World!' }).then(({ value }) => {
+  //     console.log('Response from native:', value)
+  //   })
+  // })
 
   if (!data)
     return (
@@ -51,6 +59,8 @@ const Browse: React.FC = () => {
     )
 
   const testLane = data.lanes[7]
+
+  console.log(data)
 
   return (
     <IonPage>
