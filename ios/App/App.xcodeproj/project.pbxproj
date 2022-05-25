@@ -3,12 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2C263DCF283D006700A550EF /* R2Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C263DCE283D006700A550EF /* R2Plugin.swift */; };
 		2C263DD2283D00AC00A550EF /* R2Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C263DD1283D00AC00A550EF /* R2Plugin.m */; };
+		2CD2A6C5283E327F00A6EAA1 /* R2Navigator in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A6C4283E327F00A6EAA1 /* R2Navigator */; };
+		2CD2A6C7283E327F00A6EAA1 /* R2Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A6C6283E327F00A6EAA1 /* R2Shared */; };
+		2CD2A6C9283E327F00A6EAA1 /* R2Streamer in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A6C8283E327F00A6EAA1 /* R2Streamer */; };
 		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
 		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
 		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
@@ -42,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD2A6C5283E327F00A6EAA1 /* R2Navigator in Frameworks */,
+				2CD2A6C9283E327F00A6EAA1 /* R2Streamer in Frameworks */,
+				2CD2A6C7283E327F00A6EAA1 /* R2Shared in Frameworks */,
 				A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +126,11 @@
 			dependencies = (
 			);
 			name = App;
+			packageProductDependencies = (
+				2CD2A6C4283E327F00A6EAA1 /* R2Navigator */,
+				2CD2A6C6283E327F00A6EAA1 /* R2Shared */,
+				2CD2A6C8283E327F00A6EAA1 /* R2Streamer */,
+			);
 			productName = App;
 			productReference = 504EC3041FED79650016851F /* App.app */;
 			productType = "com.apple.product-type.application";
@@ -149,6 +160,9 @@
 				Base,
 			);
 			mainGroup = 504EC2FB1FED79650016851F;
+			packageReferences = (
+				2CD2A6C3283E327F00A6EAA1 /* XCRemoteSwiftPackageReference "swift-toolkit" */,
+			);
 			productRefGroup = 504EC3051FED79650016851F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -345,7 +359,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -360,7 +375,10 @@
 				DEVELOPMENT_TEAM = M7W6Y6778F;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.nypl.hybrid-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -382,7 +400,10 @@
 				DEVELOPMENT_TEAM = M7W6Y6778F;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.nypl.hybrid-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
@@ -414,6 +435,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CD2A6C3283E327F00A6EAA1 /* XCRemoteSwiftPackageReference "swift-toolkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/readium/swift-toolkit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CD2A6C4283E327F00A6EAA1 /* R2Navigator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CD2A6C3283E327F00A6EAA1 /* XCRemoteSwiftPackageReference "swift-toolkit" */;
+			productName = R2Navigator;
+		};
+		2CD2A6C6283E327F00A6EAA1 /* R2Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CD2A6C3283E327F00A6EAA1 /* XCRemoteSwiftPackageReference "swift-toolkit" */;
+			productName = R2Shared;
+		};
+		2CD2A6C8283E327F00A6EAA1 /* R2Streamer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CD2A6C3283E327F00A6EAA1 /* XCRemoteSwiftPackageReference "swift-toolkit" */;
+			productName = R2Streamer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 504EC2FC1FED79650016851F /* Project object */;
 }
