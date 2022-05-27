@@ -12,6 +12,10 @@
 		2CD2A6C5283E327F00A6EAA1 /* R2Navigator in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A6C4283E327F00A6EAA1 /* R2Navigator */; };
 		2CD2A6C7283E327F00A6EAA1 /* R2Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A6C6283E327F00A6EAA1 /* R2Shared */; };
 		2CD2A6C9283E327F00A6EAA1 /* R2Streamer in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A6C8283E327F00A6EAA1 /* R2Streamer */; };
+		2CD2A6CD283E38D500A6EAA1 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A6CC283E38D500A6EAA1 /* TestView.swift */; };
+		2CD2A6D3284106B400A6EAA1 /* LibraryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A6D2284106B400A6EAA1 /* LibraryError.swift */; };
+		2CD2A6D528410F1F00A6EAA1 /* FutureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A6D428410F1F00A6EAA1 /* FutureExtension.swift */; };
+		2CD2A6D728410F9200A6EAA1 /* ReaderModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A6D628410F9200A6EAA1 /* ReaderModule.swift */; };
 		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
 		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
 		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
@@ -26,6 +30,10 @@
 		2C263DCE283D006700A550EF /* R2Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R2Plugin.swift; sourceTree = "<group>"; };
 		2C263DD0283D00AC00A550EF /* App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C263DD1283D00AC00A550EF /* R2Plugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = R2Plugin.m; sourceTree = "<group>"; };
+		2CD2A6CC283E38D500A6EAA1 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		2CD2A6D2284106B400A6EAA1 /* LibraryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryError.swift; sourceTree = "<group>"; };
+		2CD2A6D428410F1F00A6EAA1 /* FutureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtension.swift; sourceTree = "<group>"; };
+		2CD2A6D628410F9200A6EAA1 /* ReaderModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderModule.swift; sourceTree = "<group>"; };
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
 		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +103,10 @@
 				2C263DCE283D006700A550EF /* R2Plugin.swift */,
 				2C263DD1283D00AC00A550EF /* R2Plugin.m */,
 				2C263DD0283D00AC00A550EF /* App-Bridging-Header.h */,
+				2CD2A6CC283E38D500A6EAA1 /* TestView.swift */,
+				2CD2A6D2284106B400A6EAA1 /* LibraryError.swift */,
+				2CD2A6D428410F1F00A6EAA1 /* FutureExtension.swift */,
+				2CD2A6D628410F9200A6EAA1 /* ReaderModule.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -229,6 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD2A6CD283E38D500A6EAA1 /* TestView.swift in Sources */,
+				2CD2A6D3284106B400A6EAA1 /* LibraryError.swift in Sources */,
+				2CD2A6D728410F9200A6EAA1 /* ReaderModule.swift in Sources */,
+				2CD2A6D528410F1F00A6EAA1 /* FutureExtension.swift in Sources */,
 				2C263DD2283D00AC00A550EF /* R2Plugin.m in Sources */,
 				2C263DCF283D006700A550EF /* R2Plugin.swift in Sources */,
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
@@ -305,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -356,7 +372,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -374,7 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M7W6Y6778F;
 				INFOPLIST_FILE = App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,7 +415,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M7W6Y6778F;
 				INFOPLIST_FILE = App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

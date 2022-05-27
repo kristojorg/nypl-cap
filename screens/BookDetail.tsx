@@ -8,9 +8,7 @@ import {
   IonPage,
   IonRefresher,
   IonRefresherContent,
-  IonSkeletonText,
   IonSpinner,
-  IonThumbnail,
   IonTitle,
   IonToolbar,
   RefresherEventDetail,
@@ -62,8 +60,6 @@ const BookDetailPage: React.FC<BookDetailProps> = ({ match }) => {
     await mutate()
     event.detail.complete()
   }
-
-  console.log(data)
 
   if (!data)
     return (

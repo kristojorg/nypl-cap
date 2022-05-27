@@ -6,6 +6,8 @@ export const ROOT_LANE_URL = new URL(
   AUTH_DOC_URL
 ).toString()
 
+export const STANDARD_EBOOKS_CATALOG_URL = 'https://standardebooks.org/opds/all'
+
 /**
  * Uncomment to switch to Open eBooks.
  */

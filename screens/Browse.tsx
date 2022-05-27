@@ -1,6 +1,9 @@
 import {
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
   IonLabel,
   IonList,
   IonListHeader,
@@ -20,7 +23,7 @@ import { fetchCollection } from '~/lib/fetching/fetch'
 import ListLoader from '~/components/ListLoader'
 import ListItem from '~/components/ListItem'
 import React from 'react'
-// import R2 from '~/lib/r2Plugin'
+import R2 from '~/lib/r2Plugin'
 
 const Browse: React.FC = () => {
   const { data, mutate } = useSWR(ROOT_LANE_URL, fetchCollection)
@@ -30,11 +33,11 @@ const Browse: React.FC = () => {
     event.detail.complete()
   }
 
-  // React.useEffect(() => {
-  //   R2.echo({ value: 'Hello World!' }).then(({ value }) => {
-  //     console.log('Response from native:', value)
-  //   })
-  // })
+  function alert() {
+    // R2.present({ message: 'You did it!' })
+    console.log('OPENING BOOK')
+    R2.openBook()
+  }
 
   if (!data)
     return (
@@ -60,8 +63,6 @@ const Browse: React.FC = () => {
 
   const testLane = data.lanes[7]
 
-  console.log(data)
-
   return (
     <IonPage>
       <IonHeader translucent>
@@ -73,10 +74,15 @@ const Browse: React.FC = () => {
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Browse</IonTitle>
+            <IonButtons slot="primary">
+              <IonButton color="secondary" onClick={alert}>
+                Alert
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
-          <IonToolbar>
+          {/* <IonToolbar>
             <IonSearchbar></IonSearchbar>
-          </IonToolbar>
+          </IonToolbar> */}
         </IonHeader>
         <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
           <IonRefresherContent></IonRefresherContent>
