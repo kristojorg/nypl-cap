@@ -32,9 +32,10 @@ struct ReaderModule {
     }
     
     /// Opens the Readium 2 Publication at the given `url`.
-    func openPublication(at url: URL, allowUserInteraction: Bool, sender: UIViewController?) async {
+    func openPublication(at url: URL, sender: UIViewController) async {
         let publication = await parsePublication(at: url)
         
+        print("Publication Parsed")
         // add it to the publication server
         do {
             try publicationServer.add(publication)
@@ -42,11 +43,21 @@ struct ReaderModule {
             fatalError("Could not add publication to publicationServer")
         }
         
+        print("Pub added to pub server")
+        
         // set up the new view controller
-        let navigator = await EPUBNavigatorViewController(publication: publication, resourcesServer: publicationServer)
-
+        let epubVC = await EPUBNavigatorViewController(publication: publication, resourcesServer: publicationServer)
+        
+        print("Epub View Controlled created")
+        // note: cannot do these because we are using async/await here
+//        let backItem = UIBarButtonItem()
+//        epubVC.navigationItem.backBarButtonItem = backItem
+//        epubVC.hidesBottomBarWhenPushed = true
         
         // present the new view controller on the stack
+        await sender.present(epubVC, animated: true)
+        
+        print("epubVC Presented")
     }
     
     private func parsePublication(at url: URL) async -> Publication {
@@ -66,4 +77,3 @@ struct ReaderModule {
         }
     }
 }
-

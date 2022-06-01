@@ -73,7 +73,7 @@ const Browse: React.FC = () => {
             <IonTitle size="large">Browse</IonTitle>
             <IonButtons slot="primary">
               <IonButton color="secondary" onClick={alert}>
-                Alert
+                Open Sample
               </IonButton>
             </IonButtons>
           </IonToolbar>

@@ -24,23 +24,20 @@ public class R2Plugin: CAPPlugin {
         let fm = FileManager.default
         let docsurl = try! fm.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         let url = docsurl.appendingPathComponent("book.epub")
-//        let urlStr = "file://Documents/book.epub"
-//        guard let url = URL(string: urlStr) else {
-//            print("URL NOT FORMED", urlStr)
-//            return
-//        }
         guard let vc = self.bridge?.viewController else {
             print("No View Controller")
             return
         }
-//        let result = self.reader.openPublication(at: url, allowUserInteraction: true, sender: vc)
-//
-//        print("Called open publication")
-//        self.cancellable = result.sink(receiveCompletion: {completion in
-//            print ("Completion", completion)
-//        }, receiveValue: {pub, mediaType in
-//            print ("Value", pub, mediaType)
-//        })
+        
+        print("Calling reader module")
+        
+        Task {
+            do {
+                await reader.openPublication(at: url, sender: vc)
+            }
+        }
+        
+        print("Finisned opening publication.")
     }
     
    
