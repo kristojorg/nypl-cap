@@ -8,8 +8,9 @@ const config: CapacitorConfig = {
   server: {
     url: 'http://localhost:3000',
     // hostname: '192.168.178.31',
-    // hostname: 'hybrid-native',
-    cleartext: true,
+    hostname: 'nypl-hybrid.com',
+    // androidScheme: 'https',
+    // cleartext: true,
   },
 }
 
