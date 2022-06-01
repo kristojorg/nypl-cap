@@ -31,8 +31,6 @@ const Browse: React.FC = () => {
   }
 
   function alert() {
-    // R2.present({ message: 'You did it!' })
-    console.log('OPENING BOOK')
     R2.openBook()
   }
 
