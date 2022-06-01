@@ -84,6 +84,11 @@ export default function useDownload(book: OpenEBook | undefined) {
 
   async function removeDownload() {
     if (!book) return
+    const doesExist = await doesDownloadExist(book.id)
+    if (!doesExist) {
+      setDownloaded(false)
+      return
+    }
     await Filesystem.deleteFile({
       path: idToPath(book.id),
       directory: Directory.Documents,
