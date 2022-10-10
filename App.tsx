@@ -49,6 +49,9 @@ const TabLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
             <Route exact path="/browse">
               <Browse />
             </Route>
+            <Route exact path="/overdrive-browse">
+              <Browse />
+            </Route>
             <Route
               exact
               path="/browse/book/:bookUrl"
@@ -68,7 +71,11 @@ const TabLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
           <IonTabBar slot="bottom">
             <IonTabButton tab="browse" href="/browse">
               <IonIcon icon={list} />
-              <IonLabel>Browse</IonLabel>
+              <IonLabel>Browser</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="overdrive" href="/overdrive-browse">
+              <IonIcon icon={list} />
+              <IonLabel>Overdrive</IonLabel>
             </IonTabButton>
             <IonTabButton tab="my-books" href="/my-books">
               <IonIcon icon={book} />
