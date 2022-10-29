@@ -1,34 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Open eBooks Hybrid
 
-## Getting Started
+This is a proof of concept of a hybrid mobile application for NYPL e-reading teams. It uses Capacitor to provide the web/native bridge and builds a simple web application using React and Parcel that is bundled into the native applications and run inside a webview.
 
-First, run the development server:
+The iOS example also has the ability to open a proof of concept EPUB from the local filesystem.
 
-```bash
-npm run dev
-# or
-yarn dev
+## Repository Structure
+
+```
+/
+  index.html                  // web app entrypoint
+  package.json                // web app package metadata and dependencies
+  capacitor.config.ts         // Capacitor configuration settings
+  App.tsx                     // web app router and TS entrypoint
+  screens/                    // web app screens
+  lib/                        // TS utilities and resources for web app
+    r2Plugin.ts               // Defines the TS interface of R2Plugin.swift
+  ios/                        // XCode iOS project
+    App/App/R2Plugin.swift    // Capacitor plugin POC to open a local EPUB
+  android/                    // Android project
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development workflow
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+It might be first helpful to run the app in production mode, as it's a bit simpler:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Build the web app into a bundle of files starting from a single `index.html` file with `npm run build`.
+2. Sync the bundled files from `out/` to the iOS and Android applications with `npx cap sync`. This will also sync the configuration specified in capacitor.config.ts to the respective iOS/Android config settings.
+3. Run the app with `npx cap run iOS` or `npx cap run android`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### A couple things to keep in mind:
 
-## Learn More
+1. When running the app this way (in production mode), the `config.server.url` field should be commented out in `capacitor.config.ts`. This setting is useful for running the app in development mode with live code reloading.
+1. Once you have built the web code and sync'd it to the native projects, you can also run the app in XCode or Android Studio as you normally would. I found it easier to use Android Studio than `npx cap run android` personally.
 
-To learn more about Next.js, take a look at the following resources:
+### Live Reloading
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The app can also be run in development mode so that code changes in the web code will be immediately reflected in the simulators. To do this, we start a development server to serve the web app at `http://localhost:3000` and tell the native projects to point their webviews to that url. To do this:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Start the local development server with `npm run dev`
+1. You can now see the web app in a browser at `http://localhost:3000`
+1. Add `http://localhost:3000` to the `config.server.url` setting in `capacitor.config.ts`
+1. Run `npx cap sync` to sync this setting to the iOS and Android projects
+1. Run `npx cap run ios` or `npx cap run android` to start the native projects pointed to the local dev server.
 
-## Deploy on Vercel
+### A couple notes:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. I was not able to get android to work in live mode because the security policy refused to load an insecure (http) server. Apparently there is a setting somewhere on android to allow it, but I didn't have time to investigate fully.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Debugging
+
+The web code can be debugged in Safari for the iOS simulator and Chrome for the Android simulator using normal devtools as if it were a website. The native code can be debugged as normal in XCode and Android Studio when you run the projects using those tools instead of `npx cap run ...`
+
+**To debug iOS webview:**
+
+1. Run the app in the iOS simulator using XCode or `npx cap run ios`
+1. Open Safari, click `development` and then you will see a Simulators header listing `localhost` beneath. Clicking that will open Safari devtools.
+
+**To debug Android in Chrome:**
+
+... I actually can't remember right now and am running out of time. It is a similar process though that should be discoverable through capacitor docs.
+
+---
+
+I hope this helps, and good luck everyone!

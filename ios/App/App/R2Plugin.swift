@@ -23,6 +23,7 @@ public class R2Plugin: CAPPlugin {
 //        let urlStr = call.getString("url") ?? ""
         let fm = FileManager.default
         let docsurl = try! fm.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        // Hardcoded epub url. I simply placed it in the simulator file system.
         let url = docsurl.appendingPathComponent("book.epub")
         guard let vc = self.bridge?.viewController else {
             print("No View Controller")
