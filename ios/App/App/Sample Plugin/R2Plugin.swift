@@ -58,7 +58,7 @@ public class R2Plugin: CAPPlugin {
 }
 
 extension R2Plugin: SampleModuleDelegate {
-        
+
     func createSampleModel(sampleModel: SampleModel) {
         pluginReceiver?.resolve([
             "action": "create-model",
@@ -68,7 +68,7 @@ extension R2Plugin: SampleModuleDelegate {
             ]
         ])
     }
-    
+
     func updateSampleModel(sampleModel: SampleModel) {
         guard let id = sampleModel.id else { return }
 
@@ -78,7 +78,7 @@ extension R2Plugin: SampleModuleDelegate {
             "title": sampleModel.title
         ])
     }
-    
+
     func deleteSampleModel(sampleModel: SampleModel) {
         guard let id = sampleModel.id else { return }
 

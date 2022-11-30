@@ -61,6 +61,8 @@ final class SampleViewController: UIViewController {
         )
 
         tableView.frame = view.frame
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     @objc func closeButtonTapped() {
@@ -148,17 +150,17 @@ extension SampleViewController: UITableViewDelegate, UITableViewDataSource {
 
         let model = models[indexPath.row]
 
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
+            self?.delegate?.didReceiveAction(.delete, model: model)
+            completion(true)
+        }
+
         let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] _, _, completion in
             self?.promptUpdate(for: model)
             completion(true)
         }
 
-        let deleteAction = UIContextualAction(style: .destructive, title: "Edit") { [weak self] _, _, completion in
-            self?.delegate?.didReceiveAction(.delete, model: model)
-            completion(true)
-        }
-
-        let config = UISwipeActionsConfiguration(actions: [editAction, deleteAction])
+        let config = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         config.performsFirstActionWithFullSwipe = false
 
         return config
