@@ -21,9 +21,16 @@ public class R2Plugin: CAPPlugin {
     @objc func openBook(_ call: CAPPluginCall) {
         call.keepAlive = true
         pluginReceiver = call
-        
+
+        let example: [SampleModel] = [
+            SampleModel(id: "1", title: "example 1"),
+            SampleModel(id: "2", title: "example 2"),
+            SampleModel(id: "3", title: "example 3")
+        ]
+
         DispatchQueue.main.async {
             self.bridge?.viewController?.present(self.module.viewController, animated: true, completion: nil)
+            self.module.receiveModels(models: example)
         }
     }
     
