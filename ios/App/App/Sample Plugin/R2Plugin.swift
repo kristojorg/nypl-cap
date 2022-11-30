@@ -47,7 +47,9 @@ public class R2Plugin: CAPPlugin {
             return SampleModel(id: id, title: title)
         }
         
-        module.receiveModels(models: models)
+        DispatchQueue.main.async {
+            self.module.receiveModels(models: models)
+        }
                 
         call.resolve()
     }
